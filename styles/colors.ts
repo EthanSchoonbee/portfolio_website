@@ -1,3 +1,10 @@
+/*
+AUTHOR: Ethan Schoonbee
+CREATED: 27-01-2025
+UPDATED: 27-01-2025
+ */
+
+
 // src/colors.ts
 export const colors = {
     light: {
@@ -37,3 +44,4 @@ export const colors = {
         },
     },
 };
+//__________________________________________________....oooOO0_END_OF_FILE_0OOooo....__________________________________________________
