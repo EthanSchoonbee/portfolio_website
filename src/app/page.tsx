@@ -4,9 +4,10 @@ CREATED: 26-01-2025
 UPDATED: 26-01-2025
  */
 
-"use client"; // Add this directive at the top
+// load content in the client side
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef} from "react"
 import Image from "next/image"
 import {
   Github,
@@ -22,23 +23,34 @@ import {
   MapPin,
   Globe,
   Coffee,
+  ChevronDown,
+  ChevronRight,
+  ChevronLeft,
   Sun,
   Moon,
+  FileHeart,
+  Download,
 } from "lucide-react"
 
-
+// lost of tabs and their icons for navbar
 const tabs = [
   { name: "about", icon: FileText },
   { name: "skills", icon: Code },
   { name: "experience", icon: Briefcase },
   { name: "education", icon: GraduationCap },
   { name: "projects", icon: Award },
+  { name: "resume", icon: FileHeart },
 ]
 
 export default function IDEPortfolio() {
-  const [activeTab, setActiveTab] = useState("about")
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [activeTab, setActiveTab] = useState("about") // state for navbar active tabes
+  const [isSocialsPopupOpen, setIsSocialsPopupOpen] = useState(false) // state for social link popup overlay
+  const [isDarkMode, setIsDarkMode] = useState(false) // state for dark/light mode toggle
+  const [isProfileOverlayOpen, setIsProfileOverlayOpen] = useState(false); // State for profile overlay
+  const [currentOverlayIndex, setCurrentOverlayIndex] = useState(0); // state for the current costume overlay index
+
+  const socialsRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -48,22 +60,107 @@ export default function IDEPortfolio() {
     }
   }, [isDarkMode])
 
+  // handle overlay click out to minimize
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node | null; // explicitly case event target as node
+
+      // close social links popup if clicked outside
+      if (
+          socialsRef.current &&
+          target &&
+          !socialsRef.current.contains(target) &&
+          isSocialsPopupOpen
+      ) {
+        setIsSocialsPopupOpen(false);
+      }
+
+      // close profile picture overlay if clicked outside
+      if (
+          profileRef.current &&
+          target &&
+          !profileRef.current.contains(target) &&
+          isProfileOverlayOpen
+      ) {
+        setIsProfileOverlayOpen(false);
+        setCurrentOverlayIndex(0);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSocialsPopupOpen, isProfileOverlayOpen]);
+
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)
   }
 
-  const socialLinks = [
-    { name: "GitHub", icon: Github, url: "https://github.com/EthanSchoonbee" },
-    { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/ethanshoonbee" },
-    { name: "Twitter", icon: Twitter, url: "https://x.com/ethanshoonbee_" },
-    { name: "Email", icon: Mail, url: "mailto:schoonbeeethan@gmail.com" },
+  type ColorKey = "twitter_color" | "linkedin_color" | "github_color" | "email_color";
+
+  const colorVariants: Record<ColorKey, {light: string; dark: string}> = {
+    twitter_color: {
+      light: "text-gray-100 hover:text-blue-400",
+      dark: "text-gray-900 hover:text-blue-400",
+    },
+    linkedin_color: {
+      light: "text-gray-100 hover:text-indigo-600",
+      dark: "text-gray-900 hover:text-indigo-600",
+    },
+    github_color: {
+      light: "text-gray-100 hover:text-gray-600",
+      dark: "text-gray-900 hover:text-gray-500",
+    },
+    email_color: {
+      light: "text-gray-100 hover:text-red-500",
+      dark: "text-gray-900 hover:text-red-500",
+    },
+  };
+
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  type SocialLink = {
+    name: string;
+    icon: any; // type error
+    color: ColorKey;
+    url: string;
+  };
+
+  const socialLinks: SocialLink[] = [
+    { name: "GitHub", icon: Github, color: "github_color", url: "https://github.com/EthanSchoonbee" },
+    { name: "LinkedIn", icon: Linkedin, color: "linkedin_color", url: "https://www.linkedin.com/in/ethanshoonbee" },
+    { name: "Twitter", icon: Twitter, color: "twitter_color", url: "https://x.com/ethanshoonbee_" },
+    { name: "Email", icon: Mail, color: "email_color", url: "mailto:schoonbeeethan@gmail.com" },
   ]
+
+  // Array of overlay image URLs
+  const costumeOverlays = [
+    "/headshot_1.jpg", // original photo
+    "/headshot_overlay_cowboy.jpg",
+    "/headshot_overlay_sunglasses.jpg",
+    "/headshot_overlay_princess.jpg",
+  ];
+
+  // navigate through costume overlays
+  const handlePrevious = () => {
+    setCurrentOverlayIndex((prev) =>
+        prev === 0 ? costumeOverlays.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentOverlayIndex((prev) =>
+        prev === costumeOverlays.length - 1 ? 0 : prev + 1
+    );
+  };
 
   return (
       <div
           className={`min-h-screen font-mono ${isDarkMode ? "dark bg-gray-900 text-gray-100" : "bg-white text-gray-800"}`}
       >
         <div className="container mx-auto p-4">
+
+          {/* Header Content */}
           <header className="mb-3">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4 mb-7 mt-4">
               <Image
@@ -72,15 +169,20 @@ export default function IDEPortfolio() {
                   width={100}
                   height={100}
                   className={`rounded-full mix-blend-luminosity hover:mix-blend-normal cursor-pointer ${isDarkMode ? "border-green-500" : "border-green-400 "}`}
+                  onClick={() => setIsProfileOverlayOpen(true)} // open image overlay on click
               />
               <div className="text-center md:text-left">
-                <h1 className={`text-3xl font-bold ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>Ethan Shoonbee</h1>
-                <h2 className={`text-xl font-bold  ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>Graduate Software Developer</h2>
+                <h1 className={`text-3xl font-bold ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
+                  Ethan Shoonbee
+                </h1>
+                <h2 className={`text-xl font-bold  ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+                  Graduate Software Developer
+                </h2>
                 <div className="flex justify-center md:justify-start space-x-5 mt-2">
                   {socialLinks.map((link) => (
                       <button
                           key={link.name}
-                          onClick={() => setIsPopupOpen(true)}
+                          onClick={() => setIsSocialsPopupOpen(true)} // open socials overlay on click
                           className={`${isDarkMode ? "text-gray-600 hover:text-green-400" : "text-gray-700 hover:text-green-400"}`}
                       >
                         <link.icon className="w-6 h-6" />
@@ -94,7 +196,7 @@ export default function IDEPortfolio() {
               {tabs.map((tab) => (
                   <button
                       key={tab.name}
-                      onClick={() => setActiveTab(tab.name)}
+                      onClick={() => setActiveTab(tab.name)} // set active tab in navbar on click
                       className={`px-3 py-2 mb-1 md:mb-0 rounded-t-lg flex items-center space-x-2 ${
                           activeTab === tab.name
                               ? ` border-t-2 ${isDarkMode ? "bg-gray-900 text-blue-400 border-blue-400" : "bg-white text-blue-600 border-blue-600"}`
@@ -106,7 +208,7 @@ export default function IDEPortfolio() {
                   </button>
               ))}
               <button
-                  onClick={toggleDarkMode}
+                  onClick={toggleDarkMode} // toggle dark and light modes on click
                   className={`px-3 py-2 mb-1 md:mb-0 rounded-t-lg flex items-center space-x-2 ${isDarkMode ? "text-gray-400  hover:bg-gray-700" :  "text-gray-600 hover:bg-gray-200"}`}
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -114,6 +216,7 @@ export default function IDEPortfolio() {
             </nav>
           </header>
 
+          {/* Main Content */}
           <main
               className={`p-4 rounded-b-lg border ${isDarkMode ? "bg-gray-800 border-gray-600" : "bg-white border-gray-200"} shadow`}
           >
@@ -124,34 +227,91 @@ export default function IDEPortfolio() {
               {activeTab === "experience" && <Experience />}
               {activeTab === "education" && <Education />}
               {activeTab === "projects" && <Projects />}
+              {activeTab === "resume" && <Resume />}
             </code>
           </pre>
           </main>
 
-          <footer>
-            <div className={`min-h-10`}></div>
+          {/* Footer Content */}
+          <footer
+              className={`flex justify-center items-center p-4 mt-8 border-t 
+              ${isDarkMode ? "border-gray-600" : "border-gray-200"}`}
+          >
+            <div className={`min-h-10`}>
+              <span className={`flex items-center font-light text-sm space-x-2 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                <div>Created by</div>
+                <a href={`https://localhost:3000`}>@EthanSchoonbee</a>
+              </span>
+
+            </div>
           </footer>
 
-          {isPopupOpen && (
+          {/* Profile Picture Overlay */}
+          {isProfileOverlayOpen && (
+              <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                <div ref={profileRef} className="relative">
+                  {/* Close Button */}
+                  {/*
+                  <button
+                      onClick={() => setIsProfileOverlayOpen(false)} // Close overlay
+                      className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-green-400 z-10"
+                  >
+                    &times;
+                  </button>*/}
+
+                  <div className="relative flex items-center justify-center">
+                    {/* Left Chevron */}
+                    <button
+                        onClick={handlePrevious}
+                        className="absolute left-4 text-white hover:text-green-400 z-10"
+                    >
+                      <ChevronLeft className="w-8 h-8" />
+                    </button>
+
+                    {/* Profile Image */}
+                    <Image
+                        src={costumeOverlays[currentOverlayIndex]}
+                        alt={`Profile Image ${currentOverlayIndex + 1}`}
+                        width={window.innerWidth > 768 ? 400 : 300}
+                        height={window.innerHeight > 768 ? 350 : 250}
+                        className="rounded-full border-green-400"
+                    />
+
+                    {/* Right Chevron */}
+                    <button
+                        onClick={handleNext}
+                        className="absolute right-4 text-white hover:text-green-400 z-10"
+                    >
+                      <ChevronRight className="w-8 h-8" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+          )}
+
+          {/* Socials Link Overlay */}
+          {isSocialsPopupOpen && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="bg-black p-3 rounded-lg w-96">
+                <div
+                    ref={socialsRef}
+                    className={`${isDarkMode ? "bg-white" : "bg-black"} p-3 rounded-lg w-96`}>
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-green-500 text-lg">Social Links</h3>
-                    <button onClick={() => setIsPopupOpen(false)} className="text-2xl text-green-500 hover:text-green-400">
+                    <h3 className={`${isDarkMode ?"text-green-600" : "text-green-500"} font-bold text-xl`}>Social Links</h3>
+                    <button onClick={() => setIsSocialsPopupOpen(false)} className="text-3xl text-green-600 hover:text-gray-900">
                       &times;
                     </button>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 items-center">
                     {socialLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center space-x-2 text-green-500 hover:text-green-400"
+                            className={`flex items-center space-x-2  ${colorVariants[link.color][isDarkMode ? "dark" : "light"]}`}
                         >
                           <link.icon className="w-5 h-5" />
-                          <span>{link.name}</span>
+                          <span className={`font-semibold text-xl`}>{link.name}</span>
                         </a>
                     ))}
                   </div>
@@ -280,5 +440,68 @@ function Projects() {
   return (
       <div>Projects</div>
   )
+}
+
+function Resume() {
+  const [isResumeOpen, setIsResumeOpen] = useState(true);
+
+  const toggleResume = () => {
+    setIsResumeOpen(!isResumeOpen);
+  }
+
+  return (
+      <div>
+        <span className="text-blue-400 dark:text-blue-300">const</span>{" "}
+        <span className="text-purple-500 dark:text-purple-400">resume</span> = {"{"}
+        <br />
+        &nbsp;&nbsp;name: <span className="text-green-500 dark:text-green-400">My latest resume as of </span>
+        <span className="text-orange-400 italic">26-01-2025</span>
+        ,
+        <br />
+        &nbsp;&nbsp;download:{" "}
+        <span className="text-green-400 italic underline inline-flex items-center">
+          <Download className="text-blue-500 w-4 h-4 mr-1" />
+          <a href="/resume_latest.pdf" download className="hover:bg-green-200 ml-1">
+            Click to download PDF
+          </a>
+        </span>,
+        <br />
+        &nbsp;&nbsp;view_resume:{" "}
+        <span
+            onClick={toggleResume}
+            className="text-blue-500 italic underline inline-flex items-center">
+          {isResumeOpen ? (
+              <ChevronDown className="w-4 h-4" />
+          ) : (
+              <ChevronRight className="w-4 h-4" />
+          )}
+          <span className="text-green-400 ml-1 hover:bg-green-200 italic cursor-pointer underline">Click to {isResumeOpen ? "hide" : "show"} resume</span>
+        </span>
+        <br />
+
+        <div className="mt-4">
+          {isResumeOpen && (
+              <div className="w-full flex flex-col items-center rounded-xl ">
+                <Image
+                    src="/resume_latest_page_1.jpg"
+                    alt="Resume page 1"
+                    width={800}
+                    height={1100}
+                    className="max-w-full mix-blend-luminosity rounded-t-xl h-auto"
+                />
+                <Image
+                    src="/resume_latest_page_2.jpg"
+                    alt="Resume page 2"
+                    width={800}
+                    height={1100}
+                    className="max-w-full mix-blend-luminosity rounded-b-xl h-auto"
+                />
+              </div>
+          )}
+        </div>
+        &nbsp;{"}"}
+        <br />
+      </div>
+  );
 }
 //__________________________________________________....oooOO0_END_OF_FILE_0OOooo....__________________________________________________
