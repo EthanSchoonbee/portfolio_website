@@ -97,7 +97,11 @@ export default function IDEPortfolio() {
     setIsDarkMode(!isDarkMode)
   }
 
-  type ColorKey = "twitter_color" | "linkedin_color" | "github_color" | "email_color";
+  type ColorKey =
+      | "twitter_color"
+      | "linkedin_color"
+      | "github_color"
+      | "email_color";
 
   const colorVariants: Record<ColorKey, {light: string; dark: string}> = {
     twitter_color: {
@@ -461,7 +465,7 @@ function Resume() {
         &nbsp;&nbsp;download:{" "}
         <span className="text-green-400 italic underline inline-flex items-center">
           <Download className="text-blue-500 w-4 h-4 mr-1" />
-          <a href="/resume_latest.pdf" download className="hover:bg-green-200 ml-1">
+          <a href="/assets/documents/resume_latest.pdf" download className="hover:bg-green-200 ml-1">
             Click to download PDF
           </a>
         </span>,
