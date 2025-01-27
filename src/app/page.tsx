@@ -31,6 +31,7 @@ import {
   FileHeart,
   Download,
 } from "lucide-react"
+import { aboutContent } from "@/content/about_strings"
 
 // lost of tabs and their icons for navbar
 const tabs = [
@@ -177,7 +178,7 @@ export default function IDEPortfolio() {
               />
               <div className="text-center md:text-left">
                 <h1 className={`text-3xl font-bold ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                  Ethan Shoonbee
+                  Ethan Schoonbee
                 </h1>
                 <h2 className={`text-xl font-bold  ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                   Graduate Software Developer
@@ -328,92 +329,106 @@ export default function IDEPortfolio() {
 }
 
 function About() {
+  const { personalInfo, skills, languages, interests, certifications, volunteer } = aboutContent;
+
   return (
       <>
         <span className="text-blue-400">const</span> <span className="text-purple-500">about</span> = {"{"}
         <br />
         &nbsp;&nbsp;
         <User className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        name: <span className="text-green-500">Ethan Shoonbee</span>,
+          name: <span className="text-green-500">{personalInfo.name}</span>,
         <br />
         &nbsp;&nbsp;
         <Briefcase className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        title: <span className="text-green-500">Graduate Software Developer</span>,
+          title: <span className="text-green-500">{personalInfo.title}</span>,
         <br />
         &nbsp;&nbsp;
         <FileText className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        summary:{" "}
+          summary:{" "}
         <span className="text-green-500">
-        A passionate and driven graduate software developer with a strong foundation in modern web technologies. Eager
-        to apply my skills and knowledge to real-world projects and contribute to innovative solutions.
-      </span>
+          { personalInfo.summary}
+        </span>
         ,
         <br />
         &nbsp;&nbsp;
         <Code className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        skills: [<span className="text-green-500">JavaScript</span>, <span className="text-green-500">React</span>,{" "}
-        <span className="text-green-500">Node.js</span>, <span className="text-green-500">Python</span>],
+        skills: [
+          {skills.map((skill, index) => (
+              <span key={index} className="text-green-500">
+                  {skill}
+                  {index < skills.length - 1 && ", "}
+              </span>
+        ))}],
         <br />
         &nbsp;&nbsp;
         <Globe className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        languages: [<span className="text-green-500">English (Native)</span>,{" "}
-        <span className="text-green-500">Spanish (Intermediate)</span>],
+          languages: [
+          {languages.map((language, index) => (
+              <span key={index} className="text-green-500">
+                  {language}
+                  {index < languages.length - 1 && ", "}
+              </span>
+          ))}],
         <br />
         &nbsp;&nbsp;
         <MapPin className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        location: <span className="text-green-500">San Francisco, CA</span>,
+          location: <span className="text-green-500">San Francisco, CA</span>,
         <br />
         &nbsp;&nbsp;
-        <Coffee className="inline-block w-4 h-4 mr-2 text-gray-500" />
-        interests: [
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-500">Open Source Contribution</span>,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-500">Artificial Intelligence</span>,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-500">Cloud Computing</span>,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-500">Blockchain Technology</span>
-        <br />
+          <Coffee className="inline-block w-4 h-4 mr-2 text-gray-500" />
+          interests: [
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          {interests.map((interest, index) => (
+              <span key={index} className="text-green-500">
+                  {interest}
+                  {index < interests.length - 1 && ","}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+          ))}
+          &nbsp;],
+          <br />
+          certifications: [
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          {certifications.map((certification, index) => (
+              <span key={index}>
+                  {"{"}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-green-500">{certification.name}</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">{certification.year}</span>
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;{"}"}
+                  {index < certifications.length - 1 && ","}
+                  <br />
+              </span>
+          ))}
         &nbsp;&nbsp;],
-        <br />
-        &nbsp;&nbsp;certifications: [
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;{"{"}
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name:{" "}
-        <span className="text-green-500">AWS Certified Developer - Associate</span>,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">2023</span>
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;{"}"},
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;{"{"}
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name:{" "}
-        <span className="text-green-500">Google Cloud Certified - Associate Cloud Engineer</span>,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">2022</span>
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;{"}"}
-        <br />
-        &nbsp;&nbsp;],
-        <br />
-        &nbsp;&nbsp;volunteer: [
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;{"{"}
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;organization: <span className="text-green-500">Code for San Francisco</span>
-        ,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-green-500">Volunteer Developer</span>,
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">2023</span>
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;{"}"}
-        <br />
-        &nbsp;&nbsp;]
-        <br />
+          <br />
+          volunteer: [
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          {volunteer.map((entry, index) => (
+              <span key={index}>
+                  {"{"}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;organization: <span className="text-green-500">{entry.organization}</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-green-500">{entry.role}</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">{entry.year}</span>
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;{"}"}
+                  {index < volunteer.length - 1 && ","}
+                  <br />
+              </span>
+          ))}
+          &nbsp;&nbsp;],
+
+          <br />
         {"};"}
       </>
   )
@@ -454,7 +469,7 @@ function Resume() {
   }
 
   return (
-      <div>
+      <>
         <span className="text-blue-400 dark:text-blue-300">const</span>{" "}
         <span className="text-purple-500 dark:text-purple-400">resume</span> = {"{"}
         <br />
@@ -503,9 +518,9 @@ function Resume() {
               </div>
           )}
         </div>
-        &nbsp;{"}"}
+        &nbsp;{"};"}
         <br />
-      </div>
+      </>
   );
 }
 //__________________________________________________....oooOO0_END_OF_FILE_0OOooo....__________________________________________________
