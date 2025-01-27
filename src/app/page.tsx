@@ -435,7 +435,7 @@ function About() {
   )
 }
 
-
+//TODO
 function Skills() {
   return (
       <>

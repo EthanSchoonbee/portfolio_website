@@ -5,10 +5,10 @@ export const aboutContent = {
         name: "Ethan Shoonbee",
         title: "Graduate Software Developer",
         summary: "A passionate and driven graduate software developer with a strong foundation in modern web technologies. Eager to apply my skills and knowledge to real-world projects and contribute to innovative solutions.",
-        location: "San Francisco, CA"
+        location: "Cape Town, South Africa (ZAR)"
     },
 
-    skills: ["JavaScript", "React", "Node.js", "Python"],
+    skills: ["JavaScript", "React", "C#", "Node.js", "Python"],
 
     languages: ["English (Native)", "Afrikaans (Beginner)"],
 
@@ -16,7 +16,8 @@ export const aboutContent = {
         "Open Source Contribution",
         "Artificial Intelligence",
         "Cloud Computing",
-        "Blockchain Technology"
+        "Blockchain Technology",
+        "Cyber-Security"
     ],
 
     certifications: [
@@ -32,9 +33,9 @@ export const aboutContent = {
 
     volunteer: [
         {
-            organization: "Code for San Francisco",
-            role: "Volunteer Developer",
-            year: 2023
+            organization: "SPCA - Sandton",
+            role: "Volunteer Veterinarian",
+            year: 2013
         },
     ]
 };
