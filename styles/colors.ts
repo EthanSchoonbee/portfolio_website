@@ -14,6 +14,7 @@ export const colors = {
             subHeader: "text-gray-500",
             link: "text-gray-700 hover:text-blue-600",
             icon: "text-gray-700 hover:text-green-400",
+            highlight: "text-orange-400",
         },
         background: {
             default: "bg-white",

@@ -6,7 +6,7 @@ UPDATED: 27-01-2025
 
 // load content in the client side
 "use client";
-
+import React from 'react';
 import { useState, useEffect, useRef} from "react"
 import Image from "next/image"
 import {
@@ -32,6 +32,7 @@ import {
   Download,
 } from "lucide-react"
 import { aboutContent } from "@/content/about_strings"
+import { skillsContent } from "@/content/skills_strings"
 
 // lost of tabs and their icons for navbar
 const tabs = [
@@ -434,10 +435,26 @@ function About() {
   )
 }
 
-//TODO
+
 function Skills() {
   return (
-      <div>Skills</div>
+      <>
+          <span className="text-blue-400">const</span> <span className="text-purple-500">skills</span> = {"["}
+          {skillsContent.map((skill, index) => {
+              const Icon = skill.icon;
+              return (
+                  <React.Fragment key={skill.name}>
+                      <br />
+                      &nbsp;&nbsp;{"{"} name: <span className="text-green-500">{skill.name}</span>,
+                      level: <span className="text-orange-400">{skill.level}</span>,
+                      icon: <Icon className={`inline w-5 h-5 ${skill.color}`} /> {"}"}
+                      {index < skillsContent.length - 1 && ","}
+                  </React.Fragment>
+              );
+          })}
+          <br />
+          {"];"}
+      </>
   )
 }
 
