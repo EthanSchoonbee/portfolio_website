@@ -33,6 +33,7 @@ import {
 } from "lucide-react"
 import { aboutContent } from "@/content/about_strings"
 import { skillsContent } from "@/content/skills_strings"
+import { experienceContent } from "@/content/experience_strings"
 
 // lost of tabs and their icons for navbar
 const tabs = [
@@ -141,10 +142,10 @@ export default function IDEPortfolio() {
 
   // Array of overlay image URLs
   const costumeOverlays = [
-    "/headshot_1.jpg", // original photo
-    "/headshot_overlay_cowboy.jpg",
-    "/headshot_overlay_sunglasses.jpg",
-    "/headshot_overlay_princess.jpg",
+    "/assets/images/profile/headshot_1.jpg", // original photo
+    "/assets/images/profile/headshot_overlay_cowboy.jpg",
+    "/assets/images/profile/headshot_overlay_sunglasses.jpg",
+    "/assets/images/profile/headshot_overlay_princess.jpg",
   ];
 
   // navigate through costume overlays
@@ -160,6 +161,7 @@ export default function IDEPortfolio() {
     );
   };
 
+  // Main Page Content
   return (
       <div
           className={`min-h-screen font-mono ${isDarkMode ? "dark bg-gray-900 text-gray-100" : "bg-white text-gray-800"}`}
@@ -170,7 +172,7 @@ export default function IDEPortfolio() {
           <header className="mb-3">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4 mb-7 mt-4">
               <Image
-                  src="/headshot_1.jpg?height=100&width=100"
+                  src="/assets/images/profile/headshot_1.jpg"
                   alt="Ethan Shoonbee"
                   width={100}
                   height={100}
@@ -330,7 +332,7 @@ export default function IDEPortfolio() {
 }
 
 function About() {
-  const { personalInfo, skills, languages, interests, certifications, volunteer } = aboutContent;
+  const { PERSONAL_INFO, SKILLS, LANGUAGES, INTERESTS, CERTIFICATIONS, VOLUNTEER } = aboutContent;
 
   return (
       <>
@@ -338,53 +340,53 @@ function About() {
         <br />
         &nbsp;&nbsp;
         <User className="inline-block w-4 h-4 mr-2 text-gray-500" />
-          name: <span className="text-green-500">{personalInfo.name}</span>,
+          name: <span className="text-green-500">{PERSONAL_INFO.NAME}</span>,
         <br />
         &nbsp;&nbsp;
         <Briefcase className="inline-block w-4 h-4 mr-2 text-gray-500" />
-          title: <span className="text-green-500">{personalInfo.title}</span>,
+          title: <span className="text-green-500">{PERSONAL_INFO.TITLE}</span>,
         <br />
         &nbsp;&nbsp;
         <FileText className="inline-block w-4 h-4 mr-2 text-gray-500" />
           summary:{" "}
         <span className="text-green-500">
-          { personalInfo.summary}
+          { PERSONAL_INFO.SUMMARY}
         </span>
         ,
         <br />
         &nbsp;&nbsp;
         <Code className="inline-block w-4 h-4 mr-2 text-gray-500" />
         skills: [
-          {skills.map((skill, index) => (
+          {SKILLS.map((skill, index) => (
               <span key={index} className="text-green-500">
                   {skill}
-                  {index < skills.length - 1 && ", "}
+                  {index < SKILLS.length - 1 && ", "}
               </span>
         ))}],
         <br />
         &nbsp;&nbsp;
         <Globe className="inline-block w-4 h-4 mr-2 text-gray-500" />
           languages: [
-          {languages.map((language, index) => (
+          {LANGUAGES.map((language, index) => (
               <span key={index} className="text-green-500">
                   {language}
-                  {index < languages.length - 1 && ", "}
+                  {index < LANGUAGES.length - 1 && ", "}
               </span>
           ))}],
         <br />
         &nbsp;&nbsp;
         <MapPin className="inline-block w-4 h-4 mr-2 text-gray-500" />
-          location: <span className="text-green-500">San Francisco, CA</span>,
+          location: <span className="text-green-500">{PERSONAL_INFO.LOCATION}</span>,
         <br />
         &nbsp;&nbsp;
           <Coffee className="inline-block w-4 h-4 mr-2 text-gray-500" />
           interests: [
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          {interests.map((interest, index) => (
+          {INTERESTS.map((interest, index) => (
               <span key={index} className="text-green-500">
                   {interest}
-                  {index < interests.length - 1 && ","}
+                  {index < INTERESTS.length - 1 && ","}
                   <br />
                   &nbsp;&nbsp;&nbsp;&nbsp;
               </span>
@@ -394,16 +396,16 @@ function About() {
           certifications: [
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          {certifications.map((certification, index) => (
+          {CERTIFICATIONS.map((certification, index) => (
               <span key={index}>
                   {"{"}
                   <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-green-500">{certification.name}</span>,
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-green-500">{certification.NAME}</span>,
                   <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">{certification.year}</span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">{certification.YEAR}</span>
                   <br />
                   &nbsp;&nbsp;&nbsp;&nbsp;{"}"}
-                  {index < certifications.length - 1 && ","}
+                  {index < CERTIFICATIONS.length - 1 && ","}
                   <br />
               </span>
           ))}
@@ -412,18 +414,18 @@ function About() {
           volunteer: [
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          {volunteer.map((entry, index) => (
+          {VOLUNTEER.map((entry, index) => (
               <span key={index}>
                   {"{"}
                   <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;organization: <span className="text-green-500">{entry.organization}</span>,
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;organization: <span className="text-green-500">{entry.ORGANISATION}</span>,
                   <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-green-500">{entry.role}</span>,
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-green-500">{entry.ROLE}</span>,
                   <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">{entry.year}</span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year: <span className="text-orange-400">{entry.YEAR}</span>
                   <br />
                   &nbsp;&nbsp;&nbsp;&nbsp;{"}"}
-                  {index < volunteer.length - 1 && ","}
+                  {index < VOLUNTEER.length - 1 && ","}
                   <br />
               </span>
           ))}
@@ -435,19 +437,18 @@ function About() {
   )
 }
 
-//TODO
 function Skills() {
   return (
       <>
           <span className="text-blue-400">const</span> <span className="text-purple-500">skills</span> = {"["}
           {skillsContent.map((skill, index) => {
-              const Icon = skill.icon;
+              const Icon = skill.ICON;
               return (
-                  <React.Fragment key={skill.name}>
+                  <React.Fragment key={skill.NAME}>
                       <br />
-                      &nbsp;&nbsp;{"{"} name: <span className="text-green-500">{skill.name}</span>,
-                      level: <span className="text-orange-400">{skill.level}</span>,
-                      icon: <Icon className={`inline w-5 h-5 ${skill.color}`} /> {"}"}
+                      &nbsp;&nbsp;{"{"} name: <span className="text-green-500">{skill.NAME}</span>,
+                      level: <span className="text-orange-400">{skill.LEVEL}</span>,
+                      icon: <Icon className={`inline w-5 h-5 ${skill.COLOR}`} /> {"}"}
                       {index < skillsContent.length - 1 && ","}
                   </React.Fragment>
               );
@@ -460,7 +461,63 @@ function Skills() {
 
 function Experience() {
   return (
-      <div>Experience</div>
+      <>
+          <span className="text-blue-400">const</span> <span className="text-purple-500">experience</span> = {"["}
+          <br />
+          &nbsp;&nbsp;{"{"}
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;company: <span className="text-green-500">{experienceContent.TECH_INNOVATORS.COMPANY}</span>,
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;position: <span className="text-green-500">{experienceContent.TECH_INNOVATORS.POSITION}</span>,
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;period: <span className="text-green-500">{experienceContent.TECH_INNOVATORS.PERIOD}</span>,
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;responsibilities: {"["}
+          <br />
+          {experienceContent.TECH_INNOVATORS.RESPONSIBILITIES.map((responsibility, index) => (
+              <React.Fragment key={index}>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span className="text-green-500">{responsibility}</span>
+                  {index < experienceContent.TECH_INNOVATORS.RESPONSIBILITIES.length - 1 && (
+                      <>
+                          ,<br />
+                      </>
+                  )}
+              </React.Fragment>
+          ))}
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"]"}
+          <br />
+          &nbsp;&nbsp;{"}"},
+          <br />
+          &nbsp;&nbsp;{"{"}
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;company: <span className="text-green-500">{experienceContent.STARTUP_SOLUTIONS.COMPANY}</span>,
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;position: <span className="text-green-500">{experienceContent.STARTUP_SOLUTIONS.POSITION}</span>,
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;period: <span className="text-green-500">{experienceContent.STARTUP_SOLUTIONS.PERIOD}</span>,
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;responsibilities: {"["}
+          <br />
+          {experienceContent.STARTUP_SOLUTIONS.RESPONSIBILITIES.map((responsibility, index) => (
+              <React.Fragment key={index}>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span className="text-green-500">{responsibility}</span>
+                  {index < experienceContent.STARTUP_SOLUTIONS.RESPONSIBILITIES.length - 1 && (
+                      <>
+                          ,<br />
+                      </>
+                  )}
+              </React.Fragment>
+          ))}
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"]"}
+          <br />
+          &nbsp;&nbsp;{"}"}
+          <br />
+          {"];"}
+      </>
   )
 }
 
@@ -519,14 +576,14 @@ function Resume() {
           {isResumeOpen && (
               <div className="w-full flex flex-col items-center rounded-xl ">
                 <Image
-                    src="/resume_latest_page_1.jpg"
+                    src="/assets/images/resume/resume_latest_page_1.jpg"
                     alt="Resume page 1"
                     width={800}
                     height={1100}
                     className="max-w-full mix-blend-luminosity rounded-t-xl h-auto"
                 />
                 <Image
-                    src="/resume_latest_page_2.jpg"
+                    src="/assets/images/resume/resume_latest_page_2.jpg"
                     alt="Resume page 2"
                     width={800}
                     height={1100}
