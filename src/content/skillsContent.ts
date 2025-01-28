@@ -16,3 +16,4 @@ export const skillsContent = [
     { NAME: "Docker", LEVEL: 65, ICON: SiDocker, COLOR: "text-blue-500" },
     { NAME: "Git", LEVEL: 80, ICON: SiGit, COLOR: "text-orange-500" }
 ];
+//__________________________________________________....oooOO0_END_OF_FILE_0OOooo....__________________________________________________

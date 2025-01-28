@@ -31,12 +31,12 @@ import {
   FileHeart,
   Download,
 } from "lucide-react"
-import { aboutContent } from "@/content/about_strings"
-import { skillsContent } from "@/content/skills_strings"
-import { experienceContent } from "@/content/experience_strings"
-import { educationContent } from "@/content/education_strings"
+import { aboutContent } from "@/content/aboutContent"
+import { skillsContent } from "@/content/skillsContent"
+import { experienceContent } from "@/content/experienceContent"
+import { educationContent } from "@/content/educationContent"
 
-// lost of tabs and their icons for navbar
+// list of tabs and their icons for navbar
 const tabs = [
   { name: "about", icon: FileText },
   { name: "skills", icon: Code },
