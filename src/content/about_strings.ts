@@ -1,4 +1,9 @@
-// content/about.ts
+/*
+AUTHOR: Ethan Schoonbee
+CREATED: 27-01-2025
+UPDATED: 28-01-2025
+ */
+
 
 export const aboutContent = {
     PERSONAL_INFO: {

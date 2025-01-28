@@ -1,7 +1,7 @@
 /*
 AUTHOR: Ethan Schoonbee
 CREATED: 26-01-2025
-UPDATED: 27-01-2025
+UPDATED: 28-01-2025
  */
 
 // load content in the client side
@@ -34,6 +34,7 @@ import {
 import { aboutContent } from "@/content/about_strings"
 import { skillsContent } from "@/content/skills_strings"
 import { experienceContent } from "@/content/experience_strings"
+import { educationContent } from "@/content/education_strings"
 
 // lost of tabs and their icons for navbar
 const tabs = [
@@ -524,7 +525,46 @@ function Experience() {
 //TODO
 function Education() {
   return (
-      <div>Education</div>
+      <>
+          <span className="text-blue-400">const</span>{" "}
+          <span className="text-purple-500">education</span> = {"["}
+          <br />
+          {Object.entries(educationContent).map(([key, education], index) => (
+              <React.Fragment key={key}>
+                  &nbsp;&nbsp;{"{"}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;degree:{" "}
+                  <span className="text-green-500">{education.DEGREE}</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;institution:{" "}
+                  <span className="text-green-500">{education.INSTITUTION}</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;year:{" "}
+                  <span className="text-orange-400">{education.YEAR}</span>,
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;achievements: {"["}
+                  <br />
+                  {education.ACHIEVEMENTS.map((achievement, i) => (
+                      <React.Fragment key={i}>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span className="text-green-500">{achievement}</span>
+                          {i < education.ACHIEVEMENTS.length - 1 && (
+                              <>
+                                  ,<br />
+                              </>
+                          )}
+                      </React.Fragment>
+                  ))}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;{"]"}
+                  <br />
+                  &nbsp;&nbsp;{"}"}
+                  {index < Object.entries(educationContent).length - 1 && ","}
+                  <br />
+              </React.Fragment>
+          ))}
+          {"];"}
+      </>
   )
 }
 

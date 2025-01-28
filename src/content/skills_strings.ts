@@ -1,4 +1,9 @@
-// content/skills.ts
+/*
+AUTHOR: Ethan Schoonbee
+CREATED: 27-01-2025
+UPDATED: 28-01-2025
+ */
+
 import { SiJavascript, SiReact, SiNodedotjs, SiPython, SiPostgresql, SiTypescript, SiDocker, SiGit } from 'react-icons/si'
 
 export const skillsContent = [

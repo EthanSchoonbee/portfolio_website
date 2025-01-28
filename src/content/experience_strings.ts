@@ -1,3 +1,9 @@
+/*
+AUTHOR: Ethan Schoonbee
+CREATED: 28-01-2025
+UPDATED: 28-01-2025
+ */
+
 export const experienceContent = {
     TECH_INNOVATORS: {
         COMPANY: "Tech Innovators Inc.",
