@@ -1,10 +1,22 @@
 # 🖥️ IDE-Themed Portfolio Website
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](your-site-url-here)
-[![Made with](https://img.shields.io/badge/Made%20with-❤️-red)](your-site-url-here)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)]()
+[![Made with](https://img.shields.io/badge/Made%20with-❤️-red)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+
+## 🧔🏻 Author
+- Ethan Schoonbee
+
+<div style="display: flex; align-items: center;">
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/d4118767-1bbc-46f0-af72-de206052503f" alt="whitespace_logo" width="150" height="150">
+    </div>
+    <div align="center">
+    <img src="https://github.com/user-attachments/assets/c3d3b90b-87e0-4844-8657-4e27164b6c59" alt="whitespace_logo" width="200" height="20">
+  </div>
+</div>
 
 ## 👨‍💻 About The Project
 
@@ -25,9 +37,9 @@ Ever wondered what would happen if a developer's portfolio merged with their fav
 
 ### 🔗 Connect With Me
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](your-github-url)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](your-linkedin-url)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](your-twitter-url)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/EthanSchoonbee)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]()
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)]()
 
 ## 🛠️ Built With
 
@@ -83,5 +95,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 <div align="center">
-⌨️ with ❤️ by [Your Name] | © 2025
+⌨️ with ❤️ by Ethan Schoonbee | © 2025
 </div>
