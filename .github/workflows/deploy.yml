@@ -24,7 +24,6 @@ jobs:
       - name: Build Next.js static export
         run: |
           npm run build
-          npm run export
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@v0.5.1
