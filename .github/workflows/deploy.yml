@@ -3,7 +3,7 @@ name: Deploy Next.js Static Site to S3
 on:
   push:
     branches:
-      - main  # or your deployment branch
+      - main  # deployment branch
 
 jobs:
   deploy:
