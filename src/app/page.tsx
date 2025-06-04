@@ -185,7 +185,7 @@ export default function IDEPortfolio() {
                   Ethan Schoonbee
                 </h1>
                 <h2 className={`text-xl font-bold  ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
-                  Graduate Software Developer
+                  Junior Software Developer | Entelect
                 </h2>
                 <div className="flex justify-center md:justify-start space-x-5 mt-2">
                   {socialLinks.map((link) => (
