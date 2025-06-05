@@ -143,10 +143,10 @@ export default function IDEPortfolio() {
 
   // Array of overlay image URLs
   const costumeOverlays = [
-    "/_next/assets/static/images/profile/headshot_1.jpg", // original photo
-    "/_next/assets/images/static/profile/headshot_overlay_cowboy.jpg",
-    "/_next/assets/images/static/profile/headshot_overlay_sunglasses.jpg",
-    "/_next/assets/images/static/profile/headshot_overlay_princess.jpg",
+    "/assets/static/images/profile/headshot_1.jpg", // original photo
+    "/assets/images/static/profile/headshot_overlay_cowboy.jpg",
+    "/assets/images/static/profile/headshot_overlay_sunglasses.jpg",
+    "/assets/images/static/profile/headshot_overlay_princess.jpg",
   ];
 
   // navigate through costume overlays
@@ -173,7 +173,7 @@ export default function IDEPortfolio() {
           <header className="mb-3">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4 mb-7 mt-4">
               <Image
-                  src="/assets/images/profile/headshot_1.jpg"
+                  src="/assets/static/images/profile/headshot_1.jpg"
                   alt="Ethan Shoonbee"
                   width={100}
                   height={100}
