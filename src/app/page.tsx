@@ -143,10 +143,10 @@ export default function IDEPortfolio() {
 
   // Array of overlay image URLs
   const costumeOverlays = [
-    "/assets/images/profile/headshot_1.jpg", // original photo
-    "/assets/images/profile/headshot_overlay_cowboy.jpg",
-    "/assets/images/profile/headshot_overlay_sunglasses.jpg",
-    "/assets/images/profile/headshot_overlay_princess.jpg",
+    "/_next/assets/static/images/profile/headshot_1.jpg", // original photo
+    "/_next/assets/images/static/profile/headshot_overlay_cowboy.jpg",
+    "/_next/assets/images/static/profile/headshot_overlay_sunglasses.jpg",
+    "/_next/assets/images/static/profile/headshot_overlay_princess.jpg",
   ];
 
   // navigate through costume overlays
