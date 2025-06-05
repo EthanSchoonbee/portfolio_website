@@ -8,7 +8,6 @@ UPDATED: 28-01-2025
 "use client";
 import React from 'react';
 import { useState, useEffect, useRef} from "react"
-import Image from "next/image"
 import {
   Github,
   Linkedin,
@@ -172,7 +171,7 @@ export default function IDEPortfolio() {
           {/* Header Content */}
           <header className="mb-3">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4 mb-7 mt-4">
-              <Image
+              <img
                   src="/assets/images/profile/headshot_1.jpg"
                   alt="Ethan Shoonbee"
                   width={100}
@@ -278,7 +277,7 @@ export default function IDEPortfolio() {
                     </button>
 
                     {/* Profile Image */}
-                    <Image
+                    <img
                         src={costumeOverlays[currentOverlayIndex]}
                         alt={`Profile Image ${currentOverlayIndex + 1}`}
                         width={window.innerWidth > 768 ? 400 : 300}
@@ -615,14 +614,14 @@ function Resume() {
         <div className="mt-4">
           {isResumeOpen && (
               <div className="w-full flex flex-col items-center rounded-xl ">
-                <Image
+                <img
                     src="/assets/images/resume/resume_latest_page_1.jpg"
                     alt="Resume page 1"
                     width={800}
                     height={1100}
                     className="max-w-full mix-blend-luminosity rounded-t-xl h-auto"
                 />
-                <Image
+                <img
                     src="/assets/images/resume/resume_latest_page_2.jpg"
                     alt="Resume page 2"
                     width={800}
